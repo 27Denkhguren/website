@@ -1,0 +1,120 @@
+/* Day 6: shared colors, typography, and simple selectors */
+:root {
+  --bg: #f6f7fb;
+  --surface: #ffffff;
+  --text: #202433;
+  --muted: #697086;
+  --accent: #6558d3;
+  --accent-dark: #4b40ad;
+  --border: #e4e6ef;
+  --shadow: 0 14px 40px rgba(30, 35, 70, 0.08);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  background: var(--bg);
+  color: var(--text);
+}
+a { color: inherit; }
+button, input, textarea { font: inherit; }
+h1, h2, h3, p { margin-top: 0; }
+h1 { line-height: 1.1; letter-spacing: -0.04em; }
+h2 { line-height: 1.2; letter-spacing: -0.03em; }
+
+/* Day 7: box model and consistent spacing */
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 18px 7%;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+.logo { font-weight: 800; text-decoration: none; letter-spacing: -0.04em; }
+.nav { display: flex; align-items: center; gap: 22px; }
+.nav a { text-decoration: none; color: var(--muted); font-size: 0.95rem; }
+.nav a:hover { color: var(--accent); }
+.menu-toggle { display: none; }
+.theme-toggle {
+  border: 1px solid var(--border); border-radius: 999px; background: var(--surface);
+  color: var(--text); padding: 8px 13px; cursor: pointer;
+}
+.hero {
+  min-height: 470px; padding: 90px 7%;
+  display: flex; align-items: center; justify-content: space-between; gap: 30px;
+  background: radial-gradient(circle at 80% 20%, #e5e1ff 0, transparent 32%), var(--bg);
+}
+.hero-content { max-width: 680px; }
+.hero h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); margin-bottom: 22px; }
+.accent { color: var(--accent); }
+.eyebrow { color: var(--accent); font-size: 0.78rem; font-weight: 800; letter-spacing: 0.14em; }
+.hero-text, .section-intro { color: var(--muted); max-width: 650px; font-size: 1.1rem; }
+.button {
+  display: inline-block; border: 0; border-radius: 10px; padding: 12px 19px;
+  background: var(--accent); color: white; text-decoration: none; font-weight: 700; cursor: pointer;
+}
+.button:hover { background: var(--accent-dark); }
+.section { padding: 72px 7%; }
+.section-heading { margin-bottom: 22px; }
+.section-heading h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 0; }
+.skills-list { display: flex; gap: 12px; padding: 0; list-style: none; flex-wrap: wrap; }
+.skills-list li { background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: 10px 15px; }
+.card-grid { display: flex; gap: 20px; flex-wrap: wrap; }
+.card {
+  flex: 1 1 220px; padding: 25px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow);
+}
+.card h3 { margin: 14px 0 8px; }
+.card p { color: var(--muted); margin-bottom: 0; }
+.card-number { font-size: 0.78rem; font-weight: 800; color: var(--accent); letter-spacing: 0.1em; }
+.project-card { min-height: 180px; }
+.hero-badge {
+  position: relative; max-width: 230px; padding: 20px; background: var(--surface);
+  border: 1px solid var(--border); border-radius: 16px; box-shadow: var(--shadow);
+}
+.hero-badge strong { display: block; margin-top: 8px; }
+.contact-section { background: #eeeff8; }
+.contact-form { max-width: 620px; display: flex; flex-direction: column; gap: 9px; }
+.contact-form input, .contact-form textarea {
+  width: 100%; border: 1px solid var(--border); border-radius: 9px; padding: 12px;
+  background: var(--surface); color: var(--text); margin-bottom: 10px;
+}
+.contact-form input:focus, .contact-form textarea:focus { outline: 2px solid var(--accent); outline-offset: 2px; }
+.form-status { min-height: 1.5em; font-weight: 700; }
+.form-note { color: var(--muted); font-size: 0.9rem; }
+.site-footer { padding: 24px 7%; color: var(--muted); font-size: 0.9rem; border-top: 1px solid var(--border); }
+
+/* Day 10: gentle interaction effects */
+.card { transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease; }
+.card:hover { transform: translateY(-5px); box-shadow: 0 18px 45px rgba(30, 35, 70, 0.13); border-color: #c7c1ff; }
+.button, .nav a { transition: background 180ms ease, color 180ms ease; }
+
+@media (max-width: 760px) {
+  .site-header { flex-wrap: wrap; }
+  .menu-toggle { display: inline-block; margin-left: auto; border: 1px solid var(--border); border-radius: 8px; background: var(--surface); padding: 7px 11px; cursor: pointer; }
+  .nav { display: none; flex-basis: 100%; flex-direction: column; align-items: flex-start; padding: 12px 0; }
+  .nav.is-open { display: flex; }
+  .theme-toggle { margin-left: 0; }
+  .hero { flex-direction: column; align-items: flex-start; padding-top: 65px; }
+  .hero-badge { max-width: none; }
+  .card-grid { flex-direction: column; }
+  .section { padding-top: 52px; padding-bottom: 52px; }
+}
+
+/* Day 16: dark theme, switched by the .dark-theme class on body */
+body.dark-theme {
+  --bg: #151722;
+  --surface: #202331;
+  --text: #f3f4fb;
+  --muted: #b3b7c8;
+  --accent: #a79cff;
+  --accent-dark: #8e80f5;
+  --border: #36394a;
+  --shadow: 0 14px 40px rgba(0, 0, 0, 0.2);
+}
+body.dark-theme .hero { background: radial-gradient(circle at 80% 20%, #302b55 0, transparent 32%), var(--bg); }
+body.dark-theme .contact-section { background: #1b1e2b; }
